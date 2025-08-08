@@ -16,7 +16,7 @@ public class MockUserBehavior : IMockUserBehavior
 
     public void AddBook()
     {
-        tryCatch("Add", () =>
+        tryCatch("Add Book", () =>
         {
             NewBookDto bookA = new NewBookDto()
             {
@@ -35,7 +35,7 @@ public class MockUserBehavior : IMockUserBehavior
 
     public void UpdateBook()
     {
-        tryCatch("update", () =>
+        tryCatch("Update Book", () =>
         {
             NewBookDto bookB = new NewBookDto()
             {
@@ -47,7 +47,7 @@ public class MockUserBehavior : IMockUserBehavior
             Console.WriteLine($"  {bookB.ToString()}");
 
             BookDto book = _bookService.AddBook(bookB);
-            Console.WriteLine($"  {book.ToString()}");
+            Console.WriteLine($"  New book: {book.ToString()}");
 
             book.Title = "Book C";
             Console.WriteLine("- Update book");
@@ -61,7 +61,7 @@ public class MockUserBehavior : IMockUserBehavior
 
     public void GetBookById()
     {
-        tryCatch("Get book by Id", () =>
+        tryCatch("Get Book By Id", () =>
         {
             NewBookDto newBook = new NewBookDto()
             {
@@ -83,7 +83,7 @@ public class MockUserBehavior : IMockUserBehavior
 
     public void DeleteBook()
     {
-        tryCatch("Delete book by Id", () =>
+        tryCatch("Delete Book", () =>
         {
             NewBookDto newBook = new NewBookDto()
             {
@@ -103,12 +103,13 @@ public class MockUserBehavior : IMockUserBehavior
     }
     public void ListAllBooks()
     {
-        tryCatch("List all books", () =>
+        tryCatch("List All Books", () =>
         {
+            Console.WriteLine("- bookService.ListAllBooks()");
             List<BookDto> books = _bookService.ListAllBooks();
             books.ForEach(book =>
             {
-                Console.WriteLine(book.ToString());
+                Console.WriteLine($"  {book.ToString()}");
             });
         });
     }
